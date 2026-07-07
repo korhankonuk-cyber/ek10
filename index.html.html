@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EK-10 Disiplin Kurulu Kararı – Pursaklar İmam Hatip Ortaokulu</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #1a3a6b;
+    --primary-light: #e8edf6;
+    --primary-mid: #2d5a9e;
+    --accent: #c0392b;
+    --success: #1e7e34;
+    --success-bg: #d4edda;
+    --success-border: #c3e6cb;
+    --warning-bg: #fff3cd;
+    --warning-border: #ffc107;
+    --border: #ced4da;
+    --border-light: #e9ecef;
+    --surface: #f8f9fa;
+    --text: #212529;
+    --text-muted: #6c757d;
+    --radius: 6px;
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: #edf2f7;
+    color: var(--text);
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ── Üst Başlık ─────────────────────────────────── */
+  .doc-header {
+    position: relative;
+    background: var(--primary);
+    color: #fff;
+    text-align: center;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius) var(--radius) 0 0;
+    border-bottom: 4px solid var(--accent);
+  }
+  .doc-header .meb-logo {
+    font-size: 11px;
+    letter-spacing: .08em;
+    opacity: .85;
+    margin-bottom: .3rem;
+  }
+  .doc-header h1 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    line-height: 1.7;
+    margin-bottom: .25rem;
+  }
+  .doc-header h2 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    color: #ffd700;
+  }
+
+  /* ── Kart ────────────────────────────────────────── */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-top: none;
+    padding: 1.5rem;
+  }
+  .card:last-child {
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+
+  /* ── Upload Alanı ────────────────────────────────── */
+  .upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+    background: var(--surface);
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  .upload-zone:hover, .upload-zone.drag-over {
+    border-color: var(--primary-mid);
+    background: var(--primary-light);
+  }
+  .upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 0;
+  }
+  .upload-icon { font-size: 2rem; margin-bottom: .5rem; }
+  .upload-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: .25rem; }
+  .upload-sub { font-size: 12px; color: var(--text-muted); }
+  .upload-status {
+    margin-top: .6rem;
+    font-size: 13px;
+    font-weight: 500;
+    display: none;
+  }
+  .upload-status.ok { color: var(--success); display: block; }
+  .upload-status.err { color: var(--accent); display: block; }
+  .upload-status.loading { color: var(--primary-mid); display: block; }
+
+  .match-info {
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    border-radius: var(--radius);
+    padding: .65rem 1rem;
+    font-size: 13px;
+    color: var(--success);
+    margin-bottom: 1.25rem;
+    display: none;
+  }
+
+  /* ── Bölüm Başlığı ───────────────────────────────── */
+  .section-header {
+    background: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    padding: .45rem .85rem;
+    margin: 1.25rem 0 .75rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .section-header h3 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: .07em;
+  }
+
+  /* ── Grid ────────────────────────────────────────── */
+  .grid { display: grid; gap: .6rem .75rem; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: 1fr 1fr 1fr; }
+  .g4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .col-full { grid-column: 1 / -1; }
+
+  /* ── Form Alanları ───────────────────────────────── */
+  .field { display: flex; flex-direction: column; gap: .2rem; }
+  label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  input, select, textarea {
+    padding: .42rem .65rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-family: var(--font);
+    color: var(--text);
+    background: #fff;
+    transition: border-color .15s;
+    width: 100%;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-mid);
+    box-shadow: 0 0 0 3px rgba(45,90,158,.1);
+  }
+  textarea { resize: vertical; min-height: 75px; }
+
+  .field-filled input,
+  .field-filled select,
+  .field-filled textarea {
+    border-color: var(--success);
+    background: var(--success-bg);
+  }
+  }
+
+  /* ── Butonlar ─────────────────────────────────────── */
+  .btn-row {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-light);
+  }
+  .btn {
+    padding: .55rem 1.25rem;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    font-family: var(--font);
+    transition: all .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .btn-primary:hover { background: var(--primary-mid); border-color: var(--primary-mid); }
+  .btn-secondary {
+    background: #fff;
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+  .btn-secondary:hover { background: var(--primary-light); }
+  .btn-danger {
+    background: #fff;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .btn-danger:hover { background: #fdf2f2; }
+
+  /* ── Önizleme ─────────────────────────────────────── */
+  #preview-section {
+    display: none;
+    margin-top: 1.5rem;
+  }
+  .preview-card {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 2.25rem;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: #000;
+  }
+  .preview-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .04em;
+    line-height: 2;
+    margin-bottom: .85rem;
+    text-transform: uppercase;
+  }
+  .preview-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: .75rem;
+    color: #333;
+  }
+  .preview-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: .75rem;
+    font-size: 12px;
+  }
+  .preview-table td {
+    border: 1px solid #999;
+    padding: .3rem .55rem;
+  }
+  .preview-table td:first-child {
+    background: #f5f5f5;
+    font-weight: 600;
+    width: 38%;
+  }
+  .preview-section-label {
+    font-weight: 700;
+    font-size: 12px;
+    margin: .65rem 0 .2rem;
+  }
+  .preview-text {
+    font-size: 12px;
+    margin-bottom: .3rem;
+    line-height: 1.65;
+  }
+  .preview-karar-box {
+    border: 1.5px solid #000;
+    padding: .6rem .85rem;
+    margin: .6rem 0;
+    font-size: 12.5px;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .signature-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: .3rem;
+    margin-top: 1.25rem;
+  }
+  .sig-box {
+    text-align: center;
+    border-top: 1px solid #999;
+    padding-top: .35rem;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .sig-role { color: #555; font-size: 10.5px; }
+  .preview-footer {
+    margin-top: 1.25rem;
+    font-size: 11px;
+    color: #555;
+    border-top: 1px solid #ccc;
+    padding-top: .75rem;
+    line-height: 1.7;
+  }
+  .mudur-row {
+    text-align: right;
+    font-size: 12px;
+    margin-top: .85rem;
+    line-height: 1.7;
+  }
+
+  /* ── Yazdırma – A4 Tek Sayfa ──────────────────────── */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 5mm 8mm 5mm 8mm;
+    }
+
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    html, body {
+      width: 210mm !important;
+      height: 297mm !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #fff !important;
+      overflow: hidden !important;
+    }
+
+    .container { max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+
+    /* Gizle */
+    .form-section, .btn-row, .upload-zone, .match-info,
+    .match-info-static, #uploadStatus, .doc-header { display: none !important; }
+
+    /* Önizleme */
+    #preview-section {
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+
+    .preview-card {
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      /* Chrome/Edge: zoom ile küçült */
+      zoom: 0.72 !important;
+      /* Firefox: transform ile küçült */
+      -moz-transform: scale(0.72) !important;
+      -moz-transform-origin: top left !important;
+      width: 100% !important;
+    }
+
+    /* Sayfa kırılmasını engelle */
+    .preview-card * { page-break-inside: avoid !important; }
+    .preview-card { page-break-after: avoid !important; overflow: hidden !important; }
+  }
+
+  /* ── Mobil ─────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .g2, .g3, .g4 { grid-template-columns: 1fr; }
+    .col-full { grid-column: 1; }
+    .signature-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Başlık -->
+  <div class="doc-header">
+    <img src="data:image/png;base64,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" alt="Okul Logosu" style="position:absolute;top:50%;left:1rem;transform:translateY(-50%);width:72px;height:72px;object-fit:contain;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,0.3);">
+    
+    <h1>PURSAKLAR İMAM HATİP ORTAOKULU</h1>
+    <h2>EK – 10 &nbsp;|&nbsp; Öğrenci Davranışlarını Değerlendirme Kurulu Kararı</h2>
+  </div>
+
+  <!-- Form Kartı -->
+  <div class="card form-section">
+
+    <!-- Dosya Yükleme -->
+    <div class="upload-zone" id="dropZone">
+      <input type="file" id="docxInput" accept=".docx,.jpg,.jpeg,.png,.pdf" aria-label="Dosya seç">
+      <div class="upload-icon">📄</div>
+      <div class="upload-title">Belge veya Görsel Yükle</div>
+      <div class="upload-sub">.docx (Word) &nbsp;•&nbsp; .pdf &nbsp;•&nbsp; .jpg / .jpeg / .png (Fotoğraf) — Sürükle bırak veya tıkla</div>
+      <div class="upload-status" id="uploadStatus"></div>
+    </div>
+    <div class="match-info" id="matchInfo"></div>
+
+    <!-- AI Görsel Analiz Butonu -->
+    <div id="aiAnalyzBox" style="display:none;background:#f0f4ff;border:1px solid #c5d3f0;border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a3a6b;">📋 Yüklenen görseli / belgeyi AI ile analiz et</div>
+          <div style="font-size:12px;color:#5a6a8a;margin-top:.2rem;">İfade özeti, Davranış Tanımı ve Kurul Kanaati otomatik oluşturulacak</div>
+        </div>
+        <button id="btnAiAnalyz" onclick="aiGorselAnaliz()" style="padding:.5rem 1.2rem;background:#1a3a6b;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:.4rem;">
+          ✨ AI ile Analiz Et
+        </button>
+      </div>
+      <div id="aiAnalyzStatus" style="font-size:12px;margin-top:.5rem;color:#5a6a8a;display:none;"></div>
+    </div>
+
+    <!-- Karar Bilgileri -->
+    <div class="section-header"><h3>Karar Bilgileri</h3></div>
+    <div class="grid g4">
+      <div class="field">
+        <label>Karar No</label>
+        <input type="text" id="kararNo" placeholder="2025/…">
+      </div>
+      <div class="field">
+        <label>Karar Tarihi</label>
+        <input type="date" id="kararTarihi">
+      </div>
+      <div class="field">
+        <label>Eğitim-Öğretim Yılı</label>
+        <input type="text" id="egitimYili" placeholder="2024-2025">
+      </div>
+      <div class="field">
+        <label>Yarıyıl</label>
+        <select id="yariyil">
+          <option value="">Seçiniz</option>
+          <option>1. Yarıyıl</option>
+          <option>2. Yarıyıl</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Öğrenci Bilgileri -->
+    <div class="section-header"><h3>Öğrenci Bilgileri</h3></div>
+    <div class="grid g3">
+      <div class="field">
+        <label>Adı Soyadı</label>
+        <input type="text" id="ogrAdi" placeholder="Ad Soyad">
+      </div>
+      <div class="field">
+        <label>T.C. Kimlik No</label>
+        <input type="text" id="tcNo" placeholder="11 haneli" maxlength="11">
+      </div>
+      <div class="field">
+        <label>Doğum Tarihi</label>
+        <input type="date" id="dogumTarihi">
+      </div>
+      <div class="field">
+        <label>Cinsiyet</label>
+        <select id="cinsiyet">
+          <option value="">Seçiniz</option>
+          <option>Erkek</option>
+          <option>Kız</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Sınıf / Şube</label>
+        <input type="text" id="sinif" placeholder="örn. 6/C">
+      </div>
+      <div class="field">
+        <label>Okul No</label>
+        <input type="text" id="okulNo" placeholder="örn. 142">
+      </div>
+      <div class="field">
+        <label>Başarı Durumu (Not Ort.)</label>
+        <input type="text" id="basari" placeholder="örn. 78.40">
+      </div>
+      <div class="field">
+        <label>Sağlık Durumu</label>
+        <input type="text" id="saglik" placeholder="örn. Yok">
+      </div>
+      <div class="field">
+        <label>Okul Öncesi Durumu</label>
+        <input type="text" id="okulOncesi" placeholder="örn. Var / Yok">
+      </div>
+    </div>
+
+    <!-- Aile Bilgileri -->
+    <div class="section-header"><h3>Aile Bilgileri</h3></div>
+    <div class="grid g3">
+      <div class="field">
+        <label>Anne Eğitim Durumu</label>
+        <select id="anneEgitim">
+          <option value="">Seçiniz</option>
+          <option>Okuma-yazma bilmiyor</option>
+          <option>İlkokul</option>
+          <option>Ortaokul</option>
+          <option>Lise</option>
+          <option>Üniversite</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Baba Eğitim Durumu</label>
+        <select id="babaEgitim">
+          <option value="">Seçiniz</option>
+          <option>Okuma-yazma bilmiyor</option>
+          <option>İlkokul</option>
+          <option>Ortaokul</option>
+          <option>Lise</option>
+          <option>Üniversite</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Anne Hayatta mı?</label>
+        <select id="anneHayatta">
+          <option value="">Seçiniz</option>
+          <option>Evet</option>
+          <option>Hayır</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Baba Hayatta mı?</label>
+        <select id="babaHayatta">
+          <option value="">Seçiniz</option>
+          <option>Evet</option>
+          <option>Hayır</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Anne Öz mü?</label>
+        <select id="anneOz">
+          <option value="">Seçiniz</option>
+          <option>Evet</option>
+          <option>Hayır</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Baba Öz mü?</label>
+        <select id="babaOz">
+          <option value="">Seçiniz</option>
+          <option>Evet</option>
+          <option>Hayır</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Birlikte mi? (Anne-Baba)</label>
+        <select id="aileYapisi">
+          <option value="">Seçiniz</option>
+          <option>Evet</option>
+          <option>Hayır</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Ekonomik Durum</label>
+        <input type="text" id="ekonomi" placeholder="örn. Orta">
+      </div>
+      <div class="field">
+        <label>Kardeş Sayısı / Yaşları</label>
+        <input type="text" id="kardes" placeholder="örn. 1 Kardeş (9)">
+      </div>
+      <div class="field">
+        <label>Veli Telefonu</label>
+        <input type="tel" id="veliTel" placeholder="0532 xxx xx xx">
+      </div>
+      <div class="field col-full">
+        <label>Aile Adresi</label>
+        <input type="text" id="adres" placeholder="Mahalle, Cadde, No, İlçe/İl">
+      </div>
+      <div class="field">
+        <label>Önceki Yaptırımlar</label>
+        <input type="text" id="oncekiYaptırim" placeholder="örn. Yok">
+      </div>
+    </div>
+
+    <!-- Olay Bilgileri -->
+    <div class="section-header"><h3>Olay Bilgileri</h3></div>
+    <div class="grid g3">
+      <div class="field">
+        <label>Olay Tarihi</label>
+        <input type="date" id="olayTarihi">
+      </div>
+      <div class="field">
+        <label>Olay Saati</label>
+        <input type="time" id="olaySaati">
+      </div>
+      <div class="field">
+        <label>Olay Yeri</label>
+        <input type="text" id="olayYeri" placeholder="örn. 6/C Sınıfı">
+      </div>
+      <div class="field col-full">
+        <label>Davranışın Çeşidi / Tanımı</label>
+        <input type="text" id="davranis" placeholder="örn. Fiziksel şiddet – kavga">
+      </div>
+      <div class="field col-full">
+        <label style="font-weight:700;color:#1a3a6b">a) Yaptırım uygulanacak öğrencinin ifadesinin özeti</label>
+        <textarea id="olayNeden" rows="3" placeholder="Yaptırım uygulanacak öğrencinin ifadesinin özeti..."></textarea>
+      </div>
+    </div>
+
+    <!-- Kurul Değerlendirmesi -->
+    <div class="section-header"><h3>Kurul Değerlendirmesi</h3></div>
+    <div class="grid g2">
+      <div class="field">
+        <label>Hafifletici Nedenler</label>
+        <input type="text" id="hafifletici" placeholder="örn. İlk suç, yaşı küçük">
+      </div>
+      <div class="field">
+        <label>Ağırlaştırıcı Nedenler</label>
+        <input type="text" id="agirlatici" placeholder="örn. Tekrar eden davranış">
+      </div>
+      <div class="field col-full">
+        <label>Kurul Kanaati / Karar Gerekçesi</label>
+        <textarea id="kurulKanaat" rows="5" placeholder="Kurul değerlendirmesi ve gerekçe..."></textarea>
+      </div>
+    </div>
+
+    <!-- Yaptırım -->
+    <div class="section-header"><h3>Yaptırım</h3></div>
+    <div class="grid g3">
+      <div class="field">
+        <label>Uygulanan Madde</label>
+        <select id="madde">
+          <option value="">Seçiniz</option>
+          <option>İOKY Md.55/1-a – Uyarma</option>
+          <option>İOKY Md.55/1-b – Kınama</option>
+          <option>İOKY Md.55/1-B-1 – Hakaret</option>
+          <option>İOKY Md.55/1-B-2 – Tehdit</option>
+          <option>İOKY Md.55/1-B-7 – Kavga</option>
+          <option>İOKY Md.56 – Alt yaptırım</option>
+          <option>Diğer</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Verilen Yaptırım</label>
+        <select id="ceza">
+          <option value="">Seçiniz</option>
+          <option>UYARMA</option>
+          <option>KINAMA</option>
+          <option>1 Gün Okula Gelmeme</option>
+          <option>3 Gün Okula Gelmeme</option>
+          <option>5 Gün Okula Gelmeme</option>
+          <option>Okul Değiştirme</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Karar Türü</label>
+        <select id="kararTuru">
+          <option value="">Seçiniz</option>
+          <option>Oy Birliği</option>
+          <option>Oy Çokluğu</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Kurul Üyeleri -->
+    <div class="section-header"><h3>Kurul Üyeleri</h3></div>
+    <div class="grid g3">
+      <div class="field">
+        <label>Başkan (Müdür / Müdür Yrd.)</label>
+        <input type="text" id="baskan" placeholder="Ad Soyad – Ünvan">
+      </div>
+      <div class="field">
+        <label>Üye 1 (Öğretmen)</label>
+        <input type="text" id="uye1" placeholder="Ad Soyad">
+      </div>
+      <div class="field">
+        <label>Üye 2 (Öğretmen)</label>
+        <input type="text" id="uye2" placeholder="Ad Soyad">
+      </div>
+      <div class="field">
+        <label>Üye 3 (Öğretmen)</label>
+        <input type="text" id="uye3" placeholder="Ad Soyad">
+      </div>
+      <div class="field">
+        <label>Okul Aile Birliği Temsilcisi</label>
+        <input type="text" id="oabTemsilci" placeholder="Ad Soyad">
+      </div>
+      <div class="field">
+        <label>Okul Müdürü</label>
+        <input type="text" id="mudur" value="Mücahit ÇITIR">
+      </div>
+    </div>
+
+    <!-- Butonlar -->
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="generatePreview()">📋 Belgeyi Oluştur</button>
+      <button class="btn btn-secondary" onclick="yazdir()">🖨️ Yazdır / PDF Al</button>
+      <button class="btn btn-danger" onclick="resetForm()">🔄 Formu Sıfırla</button>
+      <div style="display:flex;align-items:center;gap:.35rem;margin-left:auto;background:var(--surface);border:.5px solid var(--border);border-radius:var(--radius);padding:.25rem .5rem;">
+        <span style="font-size:11px;color:var(--text-muted);font-weight:600">YAZI</span>
+        <button class="btn" style="padding:.2rem .6rem;font-size:13px;font-weight:700;min-width:28px" onclick="yaziBoyutu(-1)" title="Küçült">A−</button>
+        <span id="yaziBoyutuGoster" style="font-size:11px;color:var(--text-muted);min-width:28px;text-align:center">100%</span>
+        <button class="btn" style="padding:.2rem .6rem;font-size:13px;font-weight:700;min-width:28px" onclick="yaziBoyutu(1)" title="Büyüt">A+</button>
+        <button class="btn" style="padding:.2rem .5rem;font-size:11px;color:var(--text-muted)" onclick="yaziBoyutu(0)" title="Sıfırla">↺</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Önizleme Bölümü -->
+  <div id="preview-section">
+    <div class="preview-card" id="previewContent"></div>
+  </div>
+
+</div>
+
+<!-- Mammoth.js – DOCX okuyucu -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script>
+/* ── Drag & Drop ─────────────────────────────────── */
+const dropZone = document.getElementById('dropZone');
+const docxInput = document.getElementById('docxInput');
+const statusEl = document.getElementById('uploadStatus');
+const matchEl = document.getElementById('matchInfo');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f) processFile(f);
+});
+docxInput.addEventListener('change', e => { if (e.target.files[0]) processFile(e.target.files[0]); });
+
+function setStatus(msg, cls) {
+  statusEl.textContent = msg;
+  statusEl.className = 'upload-status ' + cls;
+}
+
+/* ── Yüklenen dosyayı sakla (AI analiz için) ────── */
+let _yukluBase64 = null;
+let _yukluMediaType = null;
+let _yukluDosyaTipi = null; // 'image' veya 'pdf'
+
+/* ── DOCX İşleme ─────────────────────────────────── */
+function processFile(file) {
+  const name = file.name.toLowerCase();
+  const isDocx  = name.endsWith('.docx');
+  const isImage = name.endsWith('.jpg') || name.endsWith('.jpeg') || name.endsWith('.png');
+  const isPdf   = name.endsWith('.pdf');
+
+  if (!isDocx && !isImage && !isPdf) {
+    setStatus('❌ Lütfen .docx, .pdf, .jpg veya .png formatında dosya seçin.', 'err'); return;
+  }
+
+  setStatus('⏳ Dosya okunuyor...', 'loading');
+  clearForm();
+  // AI analiz kutusunu gizle sıfırla
+  document.getElementById('aiAnalyzBox').style.display = 'none';
+  _yukluBase64 = null; _yukluMediaType = null; _yukluDosyaTipi = null;
+
+  if (isDocx) {
+    const reader = new FileReader();
+    reader.onload = evt => {
+      mammoth.extractRawText({ arrayBuffer: evt.target.result })
+        .then(res => {
+          const matched = autoFill(res.value);
+          setStatus('✅ ' + file.name + ' okundu.', 'ok');
+          if (matched.length) {
+            matchEl.style.display = 'block';
+            matchEl.innerHTML = '✔ <strong>' + matched.length + ' alan dolduruldu:</strong> ' + matched.join(' • ');
+          }
+          // Word'de de AI analiz butonunu göster
+          document.getElementById('aiAnalyzBox').style.display = 'block';
+        })
+        .catch(err => setStatus('❌ Dosya okunamadı: ' + err.message, 'err'));
+    };
+    reader.readAsArrayBuffer(file);
+
+    // Word için de base64 sakla (mammoth'tan sonra AI analiz çağrılabilsin)
+    const r2 = new FileReader();
+    r2.onload = e => {
+      _yukluBase64 = e.target.result.split(',')[1];
+      _yukluMediaType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+      _yukluDosyaTipi = 'docx';
+    };
+    r2.readAsDataURL(file);
+
+  } else if (isImage) {
+    const reader = new FileReader();
+    reader.onload = evt => {
+      const base64 = evt.target.result.split(',')[1];
+      const mediaType = name.endsWith('.png') ? 'image/png' : 'image/jpeg';
+      // Sakla
+      _yukluBase64 = base64;
+      _yukluMediaType = mediaType;
+      _yukluDosyaTipi = 'image';
+      setStatus('✅ ' + file.name + ' yüklendi.', 'ok');
+      matchEl.style.display = 'block';
+      matchEl.innerHTML = '📷 Görsel yüklendi. AI analiz butonuna basarak ifade ve kurul kanaatini oluşturabilirsiniz.';
+      document.getElementById('aiAnalyzBox').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+
+  } else if (isPdf) {
+    const reader = new FileReader();
+    reader.onload = evt => {
+      const base64 = evt.target.result.split(',')[1];
+      _yukluBase64 = base64;
+      _yukluMediaType = 'application/pdf';
+      _yukluDosyaTipi = 'pdf';
+      setStatus('✅ ' + file.name + ' yüklendi.', 'ok');
+      matchEl.style.display = 'block';
+      matchEl.innerHTML = '📄 PDF yüklendi. AI analiz butonuna basarak ifade ve kurul kanaatini oluşturabilirsiniz.';
+      document.getElementById('aiAnalyzBox').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+async function processPdf(base64, fileName) {
+  try {
+    // ── AŞAMA 1: Form alanlarını doldur ──────────
+    setStatus('⏳ 1/2 PDF okunuyor...', 'loading');
+
+    const data1 = await aiPost({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 2000,
+      system: `Sen bir Türk okul belgesi okuma uzmanısın. Sana bir PDF belgesi verilecek.
+Belgedeki TÜM metni oku, aşağıdaki JSON formatında çıkar. Bulamadıklarını "" bırak. Sadece JSON döndür, başka hiçbir şey yazma.
+
+{
+  "kararNo": "",
+  "kararTarihi": "GG.AA.YYYY",
+  "egitimYili": "",
+  "yariyil": "",
+  "ogrAdi": "",
+  "tcNo": "",
+  "dogumTarihi": "GG.AA.YYYY",
+  "cinsiyet": "",
+  "sinif": "",
+  "okulNo": "",
+  "basari": "",
+  "saglik": "",
+  "okulOncesi": "",
+  "anneEgitim": "",
+  "babaEgitim": "",
+  "anneHayatta": "",
+  "babaHayatta": "",
+  "anneOz": "",
+  "babaOz": "",
+  "aileYapisi": "",
+  "ekonomi": "",
+  "kardes": "",
+  "adres": "",
+  "veliTel": "",
+  "oncekiYaptırim": "",
+  "olayTarihi": "GG.AA.YYYY",
+  "olayYeri": "",
+  "hafifletici": "",
+  "agirlatici": "",
+  "madde": "",
+  "ceza": "",
+  "kararTuru": "",
+  "baskan": "",
+  "uye1": "",
+  "uye2": "",
+  "uye3": "",
+  "oabTemsilci": "",
+  "mudur": ""
+}`,
+      messages: [{
+        role: 'user',
+        content: [{
+          type: 'document',
+          source: { type: 'base64', media_type: 'application/pdf', data: base64 }
+        }, {
+          type: 'text',
+          text: 'Bu PDF belgesindeki form bilgilerini JSON formatında çıkar.'
+        }]
+      }]
+    });
+
+    const rawText1 = data1.content.filter(b => b.type === 'text').map(b => b.text).join('');
+    const jsonMatch = rawText1.match(/\{[\s\S]*\}/);
+    const matched = [];
+
+    if (jsonMatch) {
+      const parsed = JSON.parse(jsonMatch[0]);
+      const tarihler = ['kararTarihi', 'dogumTarihi', 'olayTarihi'];
+      for (const [key, val] of Object.entries(parsed)) {
+        if (!val || !val.trim()) continue;
+        if (tarihler.includes(key)) {
+          const m = val.match(/(\d{1,2})[./](\d{1,2})[./](\d{4})/);
+          if (m) {
+            const iso = m[3] + '-' + m[2].padStart(2,'0') + '-' + m[1].padStart(2,'0');
+            if (setField(key, iso)) matched.push(key);
+          }
+        } else if (key === 'yariyil') {
+          const m = val.match(/([12])/);
+          if (m) {
+            const sel = document.getElementById('yariyil');
+            const hedef = m[1] + '. Yarıyıl';
+            for (const o of sel.options) {
+              if (o.text === hedef) { sel.value = o.value; sel.closest('.field').classList.add('field-filled'); matched.push(key); break; }
+            }
+          }
+        } else {
+          if (setField(key, val.trim())) matched.push(key);
+        }
+      }
+    }
+
+    // ── AŞAMA 2: Davranış / Olay / Kurul alanlarını üret ──
+    setStatus('⏳ 2/2 AI metin oluşturuluyor...', 'loading');
+
+    const ogrAdi    = v('ogrAdi')      || 'öğrenci';
+    const sinif     = v('sinif')       || '';
+    const olayTar   = v('olayTarihi')  || '';
+    const olayYer   = v('olayYeri')    || '';
+    const ceza      = v('ceza')        || '';
+    const madde     = v('madde')       || '';
+    const hafif     = v('hafifletici') || '';
+    const agir      = v('agirlatici')  || '';
+    const kararTuru = v('kararTuru')   || 'oy birliği';
+
+    const data2 = await aiPost({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 2000,
+      system: `Sen bir Türk devlet okulu EK-10 disiplin belgesi yazarısın.
+Sana bir PDF belgesi verilecek. İçindeki olayı analiz et ve 3 alanı EK-10 formatında üret.
+Sadece JSON döndür, başka hiçbir şey yazma.
+
+BAĞLAM:
+- Öğrenci: ${ogrAdi} | Sınıf: ${sinif}
+- Olay Tarihi: ${olayTar} | Olay Yeri: ${olayYer}
+- Verilen Yaptırım: ${ceza} | Madde: ${madde}
+- Hafifletici: ${hafif} | Ağırlaştırıcı: ${agir}
+- Karar Türü: ${kararTuru}
+
+FORMAT:
+davranis → Tek cümle, mastar kipiyle bitmeli.
+olayNeden → 3 paragraf: olay açıklaması → öğrenci ifadesi (tırnak + "beyan etmiştir.") → tanık ifadeleri ("ifade etmişlerdir.")
+kurulKanaat → Tek paragraf, "… yaptırımının uygulanmasına kurulumuzca ${kararTuru} ile karar verilmiştir." ile bitmeli.
+
+{"davranis":"","olayNeden":"","kurulKanaat":""}`,
+      messages: [{
+        role: 'user',
+        content: [{
+          type: 'document',
+          source: { type: 'base64', media_type: 'application/pdf', data: base64 }
+        }, {
+          type: 'text',
+          text: 'Bu PDF belgesindeki olayı analiz et. davranis, olayNeden ve kurulKanaat alanlarını EK-10 formatında oluştur.'
+        }]
+      }]
+    });
+
+    const rawText2 = data2.content.filter(b => b.type === 'text').map(b => b.text).join('');
+    const jsonMatch2 = rawText2.match(/\{[\s\S]*\}/);
+    if (jsonMatch2) {
+      const parsed2 = JSON.parse(jsonMatch2[0]);
+      if (parsed2.davranis)    { setField('davranis',    parsed2.davranis.trim());    matched.push('Davranış Çeşidi'); }
+      if (parsed2.olayNeden)   { setField('olayNeden',   parsed2.olayNeden.trim());   matched.push('Olayın Nedeni'); }
+      if (parsed2.kurulKanaat) { setField('kurulKanaat', parsed2.kurulKanaat.trim()); matched.push('Kurul Kanaati'); }
+    }
+
+    setStatus('✅ ' + fileName + ' analiz edildi.', 'ok');
+    matchEl.style.display = 'block';
+    matchEl.innerHTML = matched.length
+      ? '✔ <strong>' + matched.length + ' alan dolduruldu:</strong> ' + matched.join(' • ')
+      : '⚠ PDF\'den bilgi çıkarılamadı. Metin tabanlı bir PDF yüklediğinizden emin olun.';
+
+  } catch (err) {
+    setStatus('❌ PDF analiz hatası: ' + err.message, 'err');
+  }
+}
+
+/* ── AI Görsel Analiz ────────────────────────────── */
+async function aiGorselAnaliz() {
+  if (!_yukluBase64) {
+    alert('Lütfen önce bir dosya yükleyin.'); return;
+  }
+
+  const btn = document.getElementById('btnAiAnalyz');
+  const statusDiv = document.getElementById('aiAnalyzStatus');
+  btn.disabled = true;
+  btn.textContent = '⏳ Analiz ediliyor...';
+  statusDiv.style.display = 'block';
+
+  const ogrAdi    = v('ogrAdi')      || 'öğrenci';
+  const sinif     = v('sinif')       || '';
+  const olayTar   = v('olayTarihi')  ? fmtDate(v('olayTarihi')) : '';
+  const olayYer   = v('olayYeri')    || '';
+  const ceza      = v('ceza')        || '';
+  const madde     = v('madde')       || '';
+  const hafif     = v('hafifletici') || '';
+  const agir      = v('agirlatici')  || '';
+  const kararTuru = v('kararTuru')   || 'oy birliği';
+  const davranis  = v('davranis')    || '';
+
+  try {
+    statusDiv.textContent = '1/2 Belge okunuyor ve ifade özeti çıkarılıyor...';
+
+    // İçerik bloğu — görsel mi pdf mi? (DOCX API'ye gönderilmez)
+    let icerik;
+    if (_yukluDosyaTipi === 'image') {
+      icerik = { type: 'image', source: { type: 'base64', media_type: _yukluMediaType, data: _yukluBase64 } };
+    } else if (_yukluDosyaTipi === 'pdf') {
+      icerik = { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: _yukluBase64 } };
+    } else {
+      // DOCX veya bilinmeyen — sadece metin prompt gönder
+      icerik = { type: 'text', text: 'Formdaki mevcut bilgileri kullanarak EK-10 alanlarını oluştur.' };
+    }
+
+    const data = await aiPost({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 2500,
+      system: `Sen bir Türk devlet okulu EK-10 disiplin belgesi yazarısın.
+Sana yüklenen belgeyi/görseli analiz et ve 3 alanı EK-10 formatında üret.
+Sadece JSON döndür, başka hiçbir şey yazma.
+
+BAĞLAM:
+- Öğrenci: ${ogrAdi} | Sınıf: ${sinif}
+- Olay Tarihi: ${olayTar} | Olay Yeri: ${olayYer}
+- Davranış: ${davranis}
+- Verilen Yaptırım: ${ceza} | Madde: ${madde}
+- Hafifletici: ${hafif} | Ağırlaştırıcı: ${agir}
+- Karar Türü: ${kararTuru}
+
+FORMAT KURALLARI:
+
+davranis → Tek cümle, mastar kipiyle bitmeli.
+Örnek: "Okul içinde sınıf arkadaşına fiziksel şiddet uygulamak (boğaz sıkmak) ve kavgaya karışmak"
+
+olayNeden → Belgeden/görselden öğrencinin ifadesini çıkar. Şu yapıda yaz:
+[Öğrencinin olayı anlattığı özet paragraf]
+
+b) Tanıkların ifadesinin özeti:
+[Tanık ifadelerinin özeti — "… ifade etmiştir." kalıbıyla]
+
+c) Varsa yaptırım gerektiren davranışın tespitine yarayan diğer deliller:
+[Delil varsa yaz, yoksa "Bulunmamaktadır." yaz]
+
+ÖNEMLİ: olayNeden alanına "a) Yaptırım uygulanacak öğrencinin ifadesinin özeti:" başlığını YAZMA.
+
+kurulKanaat → Tek paragraf, hukuki dil:
+"Yapılan incelemeler ve öğrenci ifadesi doğrultusunda [öğrenci adı]'nın [tarih] tarihinde [yer]'de [davranış] eylemini gerçekleştirdiği anlaşılmıştır. Bu davranışın İOKY'nin 55. Maddesi 1. Fıkrası (B) bendi … kapsamında [üst ceza] yaptırımını gerektirmesine karşın; [hafifletici nedenler] göz önünde bulundurularak İOKY'nin 56. Maddesi 2. Fıkrası uyarınca bir alt yaptırım olan [ceza] yaptırımının uygulanmasına kurulumuzca [karar türü] ile karar verilmiştir."
+
+JSON ŞEMASI:
+{"davranis":"","olayNeden":"","kurulKanaat":""}`,
+      messages: [{
+        role: 'user',
+        content: [
+          icerik,
+          { type: 'text', text: 'Bu belgeyi analiz et. davranis, olayNeden ve kurulKanaat alanlarını EK-10 formatında oluştur.' }
+        ]
+      }]
+    });
+
+    const rawText = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
+    const jsonMatch = rawText.match(/\{[\s\S]*\}/);
+
+    if (!jsonMatch) throw new Error('AI yanıtı JSON formatında değil.');
+
+    const parsed = JSON.parse(jsonMatch[0]);
+    const doldurulan = [];
+
+    if (parsed.davranis && parsed.davranis.trim()) {
+      setField('davranis', parsed.davranis.trim());
+      doldurulan.push('Davranış Tanımı');
+    }
+    if (parsed.olayNeden && parsed.olayNeden.trim()) {
+      setField('olayNeden', parsed.olayNeden.trim());
+      doldurulan.push('İfade Özeti');
+    }
+    if (parsed.kurulKanaat && parsed.kurulKanaat.trim()) {
+      setField('kurulKanaat', parsed.kurulKanaat.trim());
+      doldurulan.push('Kurul Kanaati');
+    }
+
+    statusDiv.style.color = '#1e7e34';
+    statusDiv.textContent = '✅ ' + doldurulan.join(', ') + ' oluşturuldu.';
+    btn.textContent = '✅ Tamamlandı';
+    setTimeout(() => { btn.textContent = '✨ AI ile Analiz Et'; btn.disabled = false; }, 3000);
+
+  } catch (err) {
+    statusDiv.style.color = '#c0392b';
+    statusDiv.textContent = '❌ Hata: ' + err.message;
+    btn.disabled = false;
+    btn.textContent = '✨ AI ile Analiz Et';
+  }
+}
+
+/* ── AI Post ─────────────────────────────────────── */
+async function aiPost(payload) {
+  const resp = await fetch('https://piho-tts.korhankonuk.workers.dev/ai', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!resp.ok) {
+    const err = await resp.json();
+    throw new Error(err.error?.message || 'API hatası: ' + resp.status);
+  }
+  return resp.json();
+}
+
+async function processImage(base64, mediaType, fileName) {
+  try {
+
+    // ── AŞAMA 1: Form alanlarını doldur ──────────────
+    setStatus('⏳ 1/2 Form alanları okunuyor...', 'loading');
+
+    const data1 = await aiPost({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 2000,
+      system: `Sen bir Türk okul belgesi okuma uzmanısın. Görseldeki TÜM metni oku, aşağıdaki JSON formatında çıkar. Bulamadıklarını "" bırak. Sadece JSON döndür, başka hiçbir şey yazma.
+
+{
+  "kararNo": "",
+  "kararTarihi": "GG.AA.YYYY",
+  "egitimYili": "",
+  "yariyil": "",
+  "ogrAdi": "",
+  "tcNo": "",
+  "dogumTarihi": "GG.AA.YYYY",
+  "cinsiyet": "",
+  "sinif": "",
+  "okulNo": "",
+  "basari": "",
+  "saglik": "",
+  "okulOncesi": "",
+  "anneEgitim": "",
+  "babaEgitim": "",
+  "anneHayatta": "",
+  "babaHayatta": "",
+  "anneOz": "",
+  "babaOz": "",
+  "aileYapisi": "",
+  "ekonomi": "",
+  "kardes": "",
+  "adres": "",
+  "veliTel": "",
+  "oncekiYaptırim": "",
+  "olayTarihi": "GG.AA.YYYY",
+  "olayYeri": "",
+  "hafifletici": "",
+  "agirlatici": "",
+  "madde": "",
+  "ceza": "",
+  "kararTuru": "",
+  "baskan": "",
+  "uye1": "",
+  "uye2": "",
+  "uye3": "",
+  "oabTemsilci": "",
+  "mudur": ""
+}`,
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
+          { type: 'text', text: 'Bu belgedeki form bilgilerini JSON formatında çıkar.' }
+        ]
+      }]
+    });
+
+    const rawText1 = data1.content.filter(b => b.type === 'text').map(b => b.text).join('');
+    const jsonMatch = rawText1.match(/\{[\s\S]*\}/);
+    const matched = [];
+
+    if (jsonMatch) {
+      const parsed = JSON.parse(jsonMatch[0]);
+      const tarihler = ['kararTarihi', 'dogumTarihi', 'olayTarihi'];
+      for (const [key, val] of Object.entries(parsed)) {
+        if (!val || !val.trim()) continue;
+        if (tarihler.includes(key)) {
+          const m = val.match(/(\d{1,2})[./](\d{1,2})[./](\d{4})/);
+          if (m) {
+            const iso = m[3] + '-' + m[2].padStart(2,'0') + '-' + m[1].padStart(2,'0');
+            if (setField(key, iso)) matched.push(key);
+          }
+        } else if (key === 'yariyil') {
+          const m = val.match(/([12])/);
+          if (m) {
+            const sel = document.getElementById('yariyil');
+            const hedef = m[1] + '. Yarıyıl';
+            for (const o of sel.options) {
+              if (o.text === hedef) { sel.value = o.value; sel.closest('.field').classList.add('field-filled'); matched.push(key); break; }
+            }
+          }
+        } else {
+          if (setField(key, val.trim())) matched.push(key);
+        }
+      }
+    }
+
+    // ── AŞAMA 2: Davranış / Olay / Kurul alanlarını üret ──
+    setStatus('⏳ 2/2 AI metin oluşturuluyor...', 'loading');
+
+    // Dolu alanları bağlam olarak topla
+    const ogrAdi   = v('ogrAdi')    || 'öğrenci';
+    const sinif    = v('sinif')     || '';
+    const olayTar  = v('olayTarihi') || '';
+    const olayYer  = v('olayYeri')  || '';
+    const ceza     = v('ceza')      || '';
+    const madde    = v('madde')     || '';
+    const hafif    = v('hafifletici') || '';
+    const agir     = v('agirlatici') || '';
+    const kararTuru = v('kararTuru') || 'oy birliği';
+
+    const data2 = await aiPost({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 2000,
+      system: `Sen bir Türk devlet okulu EK-10 disiplin belgesi yazarısın.
+Sana bir olay görseli (fotoğraf, tutanak, dilekçe, not vb.) verilecek.
+Görseldeki olayı analiz et ve aşağıdaki 3 alanı EK-10 formatında üret.
+Sadece JSON döndür, başka hiçbir şey yazma.
+
+BAĞLAM:
+- Öğrenci: ${ogrAdi} | Sınıf: ${sinif}
+- Olay Tarihi: ${olayTar} | Olay Yeri: ${olayYer}
+- Verilen Yaptırım: ${ceza} | Madde: ${madde}
+- Hafifletici: ${hafif} | Ağırlaştırıcı: ${agir}
+- Karar Türü: ${kararTuru}
+
+FORMAT KURALLARI:
+davranis → Tek cümle, mastar kipiyle bitmeli. Örnek: "Okul içinde sınıf arkadaşına fiziksel şiddet uygulamak (boğaz sıkmak) ve kavgaya karışmak"
+
+olayNeden → 3 paragraf:
+  1. Olayın açıklaması (tarih, yer, ne oldu)
+  2. Öğrenci ifadesi tırnak içinde, "… beyan etmiştir." ile bitmeli
+  3. Tanık ifadeleri varsa "… ifade etmişlerdir." ile bitmeli
+
+kurulKanaat → Tek paragraf, hukuki dil. Örnek: "Yapılan incelemeler ve öğrenci ifadesi doğrultusunda [öğrenci adı]'nın [davranış] eylemini gerçekleştirdiği anlaşılmıştır. Bu davranışın İOKY'nin 55. Maddesi … kapsamında [ceza üstü] yaptırımını gerektirmesine karşın; [hafifletici nedenler] göz önünde bulundurularak İOKY'nin 56. Maddesi 2. Fıkrası uyarınca bir alt yaptırım olan [ceza] yaptırımının uygulanmasına kurulumuzca [karar türü] ile karar verilmiştir."
+
+JSON ŞEMASI:
+{
+  "davranis": "",
+  "olayNeden": "",
+  "tanikIfadesi": "",
+  "digerDelil": "",
+  "kurulKanaat": ""
+}`,
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
+          { type: 'text', text: 'Bu görseldeki olayı analiz et. davranis, olayNeden ve kurulKanaat alanlarını EK-10 formatında oluştur.' }
+        ]
+      }]
+    });
+
+    const rawText2 = data2.content.filter(b => b.type === 'text').map(b => b.text).join('');
+    const jsonMatch2 = rawText2.match(/\{[\s\S]*\}/);
+
+    if (jsonMatch2) {
+      const parsed2 = JSON.parse(jsonMatch2[0]);
+      if (parsed2.davranis)     { setField('davranis',     parsed2.davranis.trim());     matched.push('Davranış Çeşidi'); }
+      if (parsed2.olayNeden)    { setField('olayNeden',    parsed2.olayNeden.trim());    matched.push('Öğrenci İfadesi'); }
+      if (parsed2.tanikIfadesi) { setField('tanikIfadesi', parsed2.tanikIfadesi.trim()); matched.push('Tanık İfadesi'); }
+      if (parsed2.digerDelil)   { setField('digerDelil',   parsed2.digerDelil.trim());   matched.push('Diğer Deliller'); }
+      if (parsed2.kurulKanaat)  { setField('kurulKanaat',  parsed2.kurulKanaat.trim());  matched.push('Kurul Kanaati'); }
+    }
+
+    // Sonuç
+    setStatus('✅ ' + fileName + ' analiz edildi.', 'ok');
+    matchEl.style.display = 'block';
+    if (matched.length) {
+      matchEl.innerHTML = '✔ <strong>' + matched.length + ' alan dolduruldu:</strong> ' + matched.join(' • ');
+    } else {
+      matchEl.innerHTML = '⚠ Görselden bilgi çıkarılamadı. Daha net bir fotoğraf deneyin.';
+    }
+
+  } catch (err) {
+    setStatus('❌ Görsel analiz hatası: ' + err.message, 'err');
+  }
+}
+
+// Formu temizle – mudur hariç tüm alanlar boşaltılır
+function clearForm() {
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    if (el.id === 'mudur') return; // Müdür sabit kalabilir
+    if (el.tagName === 'SELECT') el.selectedIndex = 0;
+    else el.value = '';
+  });
+  document.querySelectorAll('.field').forEach(el => el.classList.remove('field-filled'));
+  matchEl.style.display = 'none';
+  document.getElementById('preview-section').style.display = 'none';
+}
+
+/* ── Otomatik Alan Doldurma ─────────────────────── */
+
+// Mammoth bold işaretlerini (* ** gibi) ve sekme karakterlerini temizle
+function cleanText(raw) {
+  return raw
+    .replace(/\*+/g, '')       // ** bold işaretlerini sil
+    .replace(/\t+/g, ' ')      // sekmeleri boşluğa çevir
+    .replace(/ {2,}/g, ' ')    // birden fazla boşluğu teke indir
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n');
+}
+
+// Anahtar kelimeden sonra gelen değeri satır sonu / bitiş belirteci bulana kadar al
+function grab(text, keys, ends, multiLine) {
+  for (const k of (Array.isArray(keys) ? keys : [keys])) {
+    const i = text.indexOf(k);
+    if (i === -1) continue;
+    const from = i + k.length;
+    let to = text.length;
+    for (const e of (ends || [])) {
+      const j = text.indexOf(e, from);
+      if (j > from && j < to) to = j;
+    }
+    if (!multiLine) {
+      // Sadece ilk satırı al
+      const nl = text.indexOf('\n', from);
+      if (nl !== -1 && nl < to) to = nl;
+    }
+    const val = text.slice(from, to).replace(/^[\s:]+/, '').trim();
+    if (val && val.length > 0 && val.length < 2000) return val;
+  }
+  return null;
+}
+
+function setField(id, val) {
+  if (!val || !val.trim()) return false;
+  val = val.trim();
+
+  // olayNeden alanında AI'ın tekrar yazdığı "a) Yaptırım..." başlığını temizle
+  if (id === 'olayNeden') {
+    val = val
+      .replace(/^a\)\s*Yaptırım uygulanacak öğrencinin ifadesinin özeti\s*[:\-]?\s*/i, '')
+      .replace(/\n+a\)\s*Yaptırım uygulanacak öğrencinin ifadesinin özeti\s*[:\-]?\s*/gi, '\n')
+      .trim();
+  }
+  const el = document.getElementById(id);
+  if (!el) return false;
+  if (el.tagName === 'SELECT') {
+    for (const o of el.options) {
+      if (!o.value) continue;
+      if (o.text === val || o.text.includes(val) || val.includes(o.text) || o.value === val) {
+        el.value = o.value;
+        el.closest('.field').classList.add('field-filled');
+        return true;
+      }
+    }
+    return false;
+  }
+  el.value = val;
+  el.closest('.field').classList.add('field-filled');
+  return true;
+}
+
+function sf(id, val, matched, label) {
+  if (val && setField(id, val)) matched.push(label || id);
+}
+
+function autoFill(rawText) {
+  const text = cleanText(rawText);
+  const matched = [];
+
+  // ── 1. Karar Tarihi ──────────────────────────────
+  const kararTarihiVal = grab(text, ['Karar Tarihi', 'KARAR TARİHİ'], ['\n']);
+  if (kararTarihiVal) {
+    const m = kararTarihiVal.match(/(\d{1,2})[./](\d{1,2})[./](\d{4})/);
+    if (m) { sf('kararTarihi', m[3]+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0'), matched, 'Karar Tarihi'); }
+  }
+
+  // ── 2. Karar No ──────────────────────────────────
+  const kararNoVal = grab(text, ['Karar No', 'Karar No :'], ['\n', 'Karar Tar']);
+  sf('kararNo', kararNoVal, matched, 'Karar No');
+
+  // ── 3. Öğrenci Adı ───────────────────────────────
+  const adiVal = grab(text, ['Adı ve Soyadı', 'Adı ve Soyadı :', 'ADI VE SOYADI'], ['\n', 'Doğum', 'T.C.', 'Sınıf']);
+  sf('ogrAdi', adiVal, matched, 'Ad Soyad');
+
+  // ── 4. Doğum Tarihi ──────────────────────────────
+  const dogumSatir = grab(text, ['Doğum Tarihi', 'DOĞUM TARİHİ'], ['\n']);
+  if (dogumSatir) {
+    const m = dogumSatir.match(/(\d{1,2})[./](\d{1,2})[./](\d{4})/);
+    if (m) { sf('dogumTarihi', m[3]+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0'), matched, 'Doğum Tarihi'); }
+  }
+
+  // ── 5. Cinsiyet ──────────────────────────────────
+  const cinsiyetSatir = grab(text, ['Cinsiyeti', 'Cinsiyet :'], ['\n']);
+  if (cinsiyetSatir && /erkek/i.test(cinsiyetSatir)) sf('cinsiyet', 'Erkek', matched, 'Cinsiyet');
+  else if (cinsiyetSatir && /kız/i.test(cinsiyetSatir)) sf('cinsiyet', 'Kız', matched, 'Cinsiyet');
+  else if (/\bErkek\b/.test(text)) sf('cinsiyet', 'Erkek', matched, 'Cinsiyet');
+  else if (/\bKız\b/.test(text)) sf('cinsiyet', 'Kız', matched, 'Cinsiyet');
+
+  // ── 6. Sınıf ─────────────────────────────────────
+  // "Sınıfı : 6-C   Yarı Yıl :2025-2026  (2.Yarıyıl)   Okul No: 347" şeklinde tek satırda geliyor
+  const sinifSatir = grab(text, ['Sınıfı', 'Sınıf :', 'SINIFI'], ['\n']);
+  if (sinifSatir) {
+    // Sınıf değeri: "6-C" veya "5/A" gibi
+    const sinifM = sinifSatir.match(/^([0-9]+[-\/][A-Za-z]+)/);
+    if (sinifM) sf('sinif', sinifM[1], matched, 'Sınıf');
+
+    // Yarı Yıl: "2025-2026  (2.Yarıyıl)"
+    const yilM = sinifSatir.match(/(\d{4}[-–]\d{4})/);
+    if (yilM) sf('egitimYili', yilM[1], matched, 'Eğitim Yılı');
+
+    const yariyilM = sinifSatir.match(/([12])\.\s*Yarı[yY]ıl/i);
+    if (yariyilM) {
+      const sel = document.getElementById('yariyil');
+      const hedef = yariyilM[1] + '. Yarıyıl';
+      for (const o of sel.options) { if (o.text === hedef) { sel.value = o.value; sel.closest('.field').classList.add('field-filled'); matched.push('Yarıyıl'); break; } }
+    }
+
+    // Okul No
+    const noM = sinifSatir.match(/Okul No[:\s]+(\d+)/i);
+    if (noM) sf('okulNo', noM[1], matched, 'Okul No');
+  }
+
+  // ── 7. Öğrenim Türü ──────────────────────────────
+  const ogrTurVal = grab(text, ['Parasız yatılı ya da gündüzlü olduğu', 'Yatılı'], ['\n']);
+  sf('okulOncesi', ogrTurVal, matched, 'Öğrenim Türü');
+
+  // ── 8. Başarı Durumu ─────────────────────────────
+  const basariVal = grab(text, ['Başarı durumu', 'Başarı Durumu', 'BAŞARI DURUMU'], ['\n']);
+  sf('basari', basariVal, matched, 'Başarı Durumu');
+
+  // ── 9. Sağlık Durumu ─────────────────────────────
+  const saglikVal = grab(text, ['Sağlık durumu', 'Sağlık Durumu', 'SAĞLIK DURUMU'], ['\n']);
+  sf('saglik', saglikVal, matched, 'Sağlık Durumu');
+
+  // ── 10. Aile tablosu – Anne/Baba eğitimi ─────────
+  // Tablo satırı: "| Eğitimi | Ortaokul | Ortaokul |"
+  const egitimM = text.match(/Eğitimi\s*\|\s*([^|]+)\|\s*([^|]+)\|/i);
+  if (egitimM) {
+    const anneEg = egitimM[1].trim();
+    const babaEg = egitimM[2].trim();
+    sf('anneEgitim', anneEg, matched, 'Anne Eğitim');
+    sf('babaEgitim', babaEg, matched, 'Baba Eğitim');
+  }
+
+  // ── 11. Birlikte mi? ─────────────────────────────
+  const birlikteM = text.match(/Birlikte mi\?\s*\|\s*([^|]+)\|\s*([^|]+)\|/i);
+  if (birlikteM) {
+    const durum = birlikteM[1].trim().toLowerCase().includes('evet') ? 'Evet' : 'Hayır';
+    sf('aileYapisi', durum, matched, 'Birlikte mi?');
+  }
+
+  // ── 11b. Hayatta mı / Öz mü ──────────────────────
+  const hayattaM = text.match(/Hayatta m[ıi]\?\s*\|\s*([^|]+)\|\s*([^|]+)\|/i);
+  if (hayattaM) {
+    sf('anneHayatta', hayattaM[1].trim().toLowerCase().includes('evet') ? 'Evet' : 'Hayır', matched, 'Anne Hayatta');
+    sf('babaHayatta', hayattaM[2].trim().toLowerCase().includes('evet') ? 'Evet' : 'Hayır', matched, 'Baba Hayatta');
+  }
+  const ozM = text.match(/Öz m[üu]\?\s*\|\s*([^|]+)\|\s*([^|]+)\|/i);
+  if (ozM) {
+    sf('anneOz', ozM[1].trim().toLowerCase().includes('evet') ? 'Evet' : 'Hayır', matched, 'Anne Öz');
+    sf('babaOz',  ozM[2].trim().toLowerCase().includes('evet') ? 'Evet' : 'Hayır', matched, 'Baba Öz');
+  }
+
+  // ── 12. Ekonomik durum ───────────────────────────
+  const ekonomiVal = grab(text, ['Ailenin ekonomik durumu', 'ekonomik durumu', '1.'], ['\n', '2.']);
+  sf('ekonomi', ekonomiVal, matched, 'Ekonomik Durum');
+
+  // ── 13. Kardeş sayısı ────────────────────────────
+  const kardesVal = grab(text, ['Kardeş sayısı ve yaşları', '2.'], ['\n', '3.']);
+  sf('kardes', kardesVal, matched, 'Kardeş Bilgisi');
+
+  // ── 14. Adres ────────────────────────────────────
+  const adresVal = grab(text, ['oturduğu yer ve açık adresi', 'Adres', '3.'], ['\n', '4.']);
+  sf('adres', adresVal, matched, 'Adres');
+
+  // ── 15. Önceki Yaptırımlar ───────────────────────
+  let oncekiVal = grab(text, ['aldığı yaptırımlar ve genel durumu', 'aldığı yaptırımlar'], ['\n', '5.']);
+  if (oncekiVal) oncekiVal = oncekiVal.replace(/^ve genel duru[^:]*:/i,'').trim();
+  sf('oncekiYaptırim', oncekiVal, matched, 'Önceki Yaptırımlar');
+
+  // ── 16. Olay yeri ve tarihi ──────────────────────
+  // Belgede tarih ve yer birleşik: "31.12.2025 6.C Sınıfı" ya da sadece tarih
+  const olaySatir = grab(text, ['yapıldığı yer ve tarihi', 'Olay Yeri'], ['\n', '6.']);
+  if (olaySatir) {
+    const olayTarM = olaySatir.match(/(\d{1,2})[./](\d{1,2})[./](\d{4})/);
+    if (olayTarM) sf('olayTarihi', olayTarM[3]+'-'+olayTarM[2].padStart(2,'0')+'-'+olayTarM[1].padStart(2,'0'), matched, 'Olay Tarihi');
+    // Tarih çıkarıldıktan sonra kalan kısım yer bilgisi
+    const yerKalan = olaySatir.replace(/\d{1,2}[./]\d{1,2}[./]\d{4}/, '').trim();
+    if (yerKalan) sf('olayYeri', yerKalan, matched, 'Olay Yeri');
+    else {
+      // Yer ayrı bir yerde olabilir: davranışın çeşidinden öğren
+      const davSatir = grab(text, ['davranışının yapıldığı yer'], ['\n','6.']);
+      if (davSatir) sf('olayYeri', davSatir.replace(/\d{1,2}[./]\d{1,2}[./]\d{4}/,'').trim(), matched, 'Olay Yeri');
+    }
+  }
+  // Yer hâlâ boşsa sınıf bilgisinden tahmini doldur
+  if (!document.getElementById('olayYeri').value) {
+    const sinifVal = document.getElementById('sinif').value;
+    if (sinifVal) sf('olayYeri', sinifVal.replace('-','/') + ' Sınıfı', matched, 'Olay Yeri');
+  }
+
+  // ── 17. Davranış çeşidi ──────────────────────────
+  const davranisVal = grab(text, ['davranışının çeşidi', 'Davranış Çeşidi', '6.'], ['\n', '7.']);
+  sf('davranis', davranisVal, matched, 'Davranış Çeşidi');
+
+  // ── 18. Olayın nedeni (madde 7 + 8) ─────────────
+  const nedenVal = grab(text, [
+    'davranışlarının nedeni',
+    'davranış ve/veya davranışlarının nedeni',
+    '7.'
+  ], ['8.', 'Olayla ilgili'], true);
+  sf('olayNeden', nedenVal, matched, 'Olayın Nedeni');
+
+  // ── 18b. Tanık ifadeleri (madde 8) ───────────────
+  const tanikVal = grab(text, ['Olayla ilgili olarak', '8.'], ['9.', 'hafifleten'], true);
+  // Tanık ifadesini mevcut nedene ekle
+  if (tanikVal) {
+    const nedenEl = document.getElementById('olayNeden');
+    if (nedenEl && nedenEl.value) {
+      nedenEl.value = nedenEl.value + '\n\n--- Tanık İfadeleri ---\n' + tanikVal.trim();
+    } else if (nedenEl) {
+      nedenEl.value = tanikVal.trim();
+      nedenEl.closest('.field').classList.add('field-filled');
+      matched.push('Tanık İfadeleri');
+    }
+  }
+
+  // ── 19. Hafifletici nedenler ─────────────────────
+  let hafifVal = grab(text, ['hafifleten veya şiddetlendiren', 'Yaptırımı hafifleten'], ['\n', '10.'], true);
+  // Başında "nedenler:" kalıntısı varsa temizle
+  if (hafifVal) hafifVal = hafifVal.replace(/^nedenler\s*:/i,'').replace(/^[:]\s*/,'').trim();
+  sf('hafifletici', hafifVal, matched, 'Hafifletici Nedenler');
+
+  // ── 20. Verilen yaptırım ve madde (madde 10) ─────
+  const yaptirimSatir = grab(text, ['Verilen yaptırım çeşidi', '10 .', '10.'], ['\n', '11.']);
+  if (yaptirimSatir) {
+    // KINAMA veya UYARMA veya diğerleri
+    if (/UYARMA/i.test(yaptirimSatir)) setField('ceza', 'UYARMA');
+    else if (/KINAMA/i.test(yaptirimSatir)) setField('ceza', 'KINAMA');
+    else if (/5\s*[Gg]ün/i.test(yaptirimSatir)) setField('ceza', '5 Gün Okula Gelmeme');
+    else if (/3\s*[Gg]ün/i.test(yaptirimSatir)) setField('ceza', '3 Gün Okula Gelmeme');
+    else if (/1\s*[Gg]ün/i.test(yaptirimSatir)) setField('ceza', '1 Gün Okula Gelmeme');
+    else if (/Okul Değiştirme/i.test(yaptirimSatir)) setField('ceza', 'Okul Değiştirme');
+    document.getElementById('ceza').closest('.field').classList.add('field-filled');
+    matched.push('Verilen Yaptırım');
+
+    // Madde tespiti (İOKY 55. Madde 1. Fıkra B bendi 7.altbend)
+    const maddeM = yaptirimSatir.match(/İOKY[\s\S]+?(?=\n|$)/i);
+    if (maddeM) {
+      const maddeText = maddeM[0].trim();
+      const sel = document.getElementById('madde');
+      let set = false;
+      for (const o of sel.options) {
+        if (o.value && maddeText.toLowerCase().includes(o.text.toLowerCase().split('–')[0].trim().toLowerCase())) {
+          sel.value = o.value; sel.closest('.field').classList.add('field-filled'); matched.push('Uygulanan Madde'); set = true; break;
+        }
+      }
+      if (!set && maddeText.includes('55') && maddeText.includes('7')) {
+        setField('madde', 'İOKY Md.55/1-B-7 – Kavga'); matched.push('Uygulanan Madde');
+      }
+    }
+  }
+
+  // ── 21. Kurul kanaati (madde 11) ─────────────────
+  const kurulVal = grab(text, [
+    'değerlendirme kurulunun kanaati',
+    'kurulunun kanaati',
+    '11 .',
+    '11.'
+  ], ['\nÜnal', '\nBaşkan', 'UYGUNDUR', '\n\t\n'], true);
+  sf('kurulKanaat', kurulVal, matched, 'Kurul Kanaati');
+
+  // ── 22. Oy birliği / çokluğu ─────────────────────
+  if (/oy birliği/i.test(text)) { setField('kararTuru', 'Oy Birliği'); document.getElementById('kararTuru').closest('.field').classList.add('field-filled'); matched.push('Karar Türü'); }
+  else if (/oy çokluğu/i.test(text)) { setField('kararTuru', 'Oy Çokluğu'); matched.push('Karar Türü'); }
+
+  // ── 23. Kurul Üyeleri ─────────────────────────────
+  // İmza satırı: "Ünal BOZKURT   Köksal ERKUŞ   Büşra SENCER   Fatmanur MERDİN   Asri UĞUR"
+  // Rol satırı:  "Başkan          Üye             Üye            Üye               Okul Aile Bir."
+  const imzaSatirM = text.match(/([A-ZÇŞĞÜÖİa-zçşğüöı]+ [A-ZÇŞĞÜÖİ]+)\s{2,}([A-ZÇŞĞÜÖİa-zçşğüöı]+ [A-ZÇŞĞÜÖİ]+)\s{2,}([A-ZÇŞĞÜÖİa-zçşğüöı]+ [A-ZÇŞĞÜÖİ]+)\s{2,}([A-ZÇŞĞÜÖİa-zçşğüöı]+ [A-ZÇŞĞÜÖİ]+)\s{2,}([A-ZÇŞĞÜÖİa-zçşğüöı]+ [A-ZÇŞĞÜÖİ]+)/);
+  if (imzaSatirM) {
+    sf('baskan', imzaSatirM[1].trim(), matched, 'Başkan');
+    sf('uye1',   imzaSatirM[2].trim(), matched, 'Üye 1');
+    sf('uye2',   imzaSatirM[3].trim(), matched, 'Üye 2');
+    sf('uye3',   imzaSatirM[4].trim(), matched, 'Üye 3');
+    sf('oabTemsilci', imzaSatirM[5].trim(), matched, 'OAB Temsilcisi');
+  }
+
+  // ── 24. Okul Müdürü ──────────────────────────────
+  const mudurVal = grab(text, ['UYGUNDUR.'], ['\nOkul', '\n\n'], true);
+  if (mudurVal) {
+    // "Mücahit ÇITIR\n\n Okul Müdürü" → sadece isim satırını al
+    const mudurSatir = mudurVal.split('\n').map(s=>s.trim()).filter(s=>s && !/^Okul Müdürü$/i.test(s))[0];
+    if (mudurSatir) sf('mudur', mudurSatir, matched, 'Okul Müdürü');
+  }
+
+  return [...new Set(matched)].filter(Boolean);
+}
+
+/* ── Yardımcı ─────────────────────────────────────── */
+function v(id) { return (document.getElementById(id)?.value || '').trim(); }
+
+function fmtDate(iso) {
+  if (!iso) return '……………';
+  const [y,m,d] = iso.split('-');
+  return d + '/' + m + '/' + y;
+}
+
+function fmtTime(t) {
+  return t || '………';
+}
+
+// olayNeden metninde b) ve c) başlıklarını koyu yap
+function formatOlayNeden(text) {
+  if (!text) return '………………………………………………………';
+  // Her satırı işle
+  const satirlar = text.split('\n');
+  return satirlar.map(satir => {
+    const trimmed = satir.trim();
+    if (/^b\s*\)/i.test(trimmed) || /^c\s*\)/i.test(trimmed)) {
+      // b) veya c) ile başlayan satır → koyu
+      return '<strong>' + trimmed + '</strong>';
+    }
+    return trimmed;
+  }).join('\n');
+}
+
+/* ── Önizleme Oluştur ─────────────────────────────── */
+function generatePreview() {
+  const ogrAdi       = v('ogrAdi')       || '……………………………';
+  const tcNo         = v('tcNo')         || '………………………';
+  const dogumTarihi  = fmtDate(v('dogumTarihi')) || '………………';
+  const cinsiyet     = v('cinsiyet')     || '………';
+  const sinif        = v('sinif')        || '………';
+  const okulNo       = v('okulNo')       || '………';
+  const basari       = v('basari')       || '………';
+  const saglik       = v('saglik')       || 'Yok';
+  const okulOncesi   = v('okulOncesi')   || '………';
+  const anneEgitim   = v('anneEgitim')   || '………';
+  const babaEgitim   = v('babaEgitim')   || '………';
+  const anneHayatta  = v('anneHayatta')  || 'Evet';
+  const babaHayatta  = v('babaHayatta')  || 'Evet';
+  const anneOz       = v('anneOz')       || 'Evet';
+  const babaOz       = v('babaOz')       || 'Evet';
+  const aileYapisi   = v('aileYapisi')   || 'Evet';
+  const ekonomi      = v('ekonomi')      || '………';
+  const kardes       = v('kardes')       || '………';
+  const adres        = v('adres')        || '………';
+  const veliTel      = v('veliTel')      || '………………';
+  const onceki       = v('oncekiYaptırim') || 'Yok';
+  const kararNo      = v('kararNo')      || '……………';
+  const kararTarihi  = fmtDate(v('kararTarihi')) || '……/……/………';
+  const yariyil      = v('yariyil')      || '………';
+  const egitimYili   = v('egitimYili')   || '………-………';
+  const olayTarihi   = fmtDate(v('olayTarihi')) || '……………';
+  const olaySaati    = fmtTime(v('olaySaati'));
+  const olayYeri     = v('olayYeri')     || '……………………';
+  const davranis     = v('davranis')     || '……………………';
+  const olayNeden    = v('olayNeden')    || '……………………………………………';
+  const tanikIfadesi = v('tanikIfadesi') || '……………………………………………';
+  const digerDelil   = v('digerDelil')   || 'Bulunmamaktadır.';
+  const hafifletici  = v('hafifletici')  || '……………………';
+  const agirlatici   = v('agirlatici')   || '……………………';
+  const kurulKanaat  = v('kurulKanaat')  || '……………………………………………';
+  const madde        = v('madde')        || '……………………………';
+  const ceza         = v('ceza')         || '………………';
+  const kararTuru    = v('kararTuru')    || 'Oy Birliği';
+  const baskan       = v('baskan')       || '…………………………';
+  const uye1         = v('uye1')         || '…………………………';
+  const uye2         = v('uye2')         || '…………………………';
+  const uye3         = v('uye3')         || '…………………………';
+  const oab          = v('oabTemsilci')  || '…………………………';
+  const mudur        = v('mudur')        || 'Mücahit ÇITIR';
+
+  document.getElementById('previewContent').innerHTML = `
+    <div class="preview-title">
+      
+      PURSAKLAR İMAM HATİP ORTAOKULU<br>
+      ÖĞRENCİ DAVRANIŞLARINI DEĞERLENDİRME KURULU KARARI<br>
+      <span style="font-size:14px;">EK – 10</span>
+    </div>
+
+    <div class="preview-meta">
+      <span><strong>Karar No:</strong> ${kararNo}</span>
+      <span><strong>Karar Tarihi:</strong> ${kararTarihi}</span>
+      <span><strong>Eğitim-Öğretim Yılı:</strong> ${egitimYili} | ${yariyil}</span>
+    </div>
+
+    <table class="preview-table">
+      <tr><td>1. Adı ve Soyadı</td><td><strong>${ogrAdi}</strong></td></tr>
+      <tr><td>2. T.C. Kimlik No</td><td>${tcNo}</td></tr>
+      <tr><td>3. Doğum Tarihi / Cinsiyeti</td><td>${dogumTarihi} &nbsp;|&nbsp; ${cinsiyet}</td></tr>
+      <tr><td>4. Sınıfı / Okul No</td><td>${sinif} &nbsp;|&nbsp; No: ${okulNo}</td></tr>
+      <tr><td>5. Başarı Durumu (Dönem Not Ort.)</td><td>${basari}</td></tr>
+      <tr><td>6. Sağlık Durumu</td><td>${saglik}</td></tr>
+      <tr><td>7. Öğrenim Türü</td><td>${okulOncesi}</td></tr>
+      <tr>
+        <td style="vertical-align:top">8. Aile Durumu</td>
+        <td style="padding:0">
+          <table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+            <thead>
+              <tr>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5;width:36%"></td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5;text-align:center;font-weight:700">Anne</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5;text-align:center;font-weight:700">Baba</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5">Eğitimi</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;text-align:center">${anneEgitim || '………'}</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;text-align:center">${babaEgitim || '………'}</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5">Hayatta mı?</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;text-align:center">${anneHayatta}</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;text-align:center">${babaHayatta}</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5">Öz mü?</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;text-align:center">${anneOz}</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;text-align:center">${babaOz}</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5">Birlikte mi?</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;text-align:center" colspan="2">${aileYapisi || 'Evet'}</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5">Ekonomik Durum</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem;text-align:center" colspan="2">${ekonomi || '………'}</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5">Kardeş / Tel</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem" colspan="2">${kardes || '………'} &nbsp;|&nbsp; ${veliTel || '………'}</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #999;padding:.1rem .4rem;background:#f5f5f5">Adres</td>
+                <td style="border:1px solid #999;padding:.1rem .4rem" colspan="2">${adres || '………'}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr><td>Önceki Yaptırımlar</td><td>${onceki}</td></tr>
+    </table>
+
+    <div class="preview-section-label">9. Yaptırımı gerektiren davranışın yeri ve tarihi:</div>
+    <div class="preview-text">${olayYeri} &nbsp;/&nbsp; ${olayTarihi} – Saat: ${olaySaati}</div>
+
+    <div class="preview-section-label">10. Yaptırımı gerektiren davranışın çeşidi:</div>
+    <div class="preview-text">${davranis}</div>
+
+    <div class="preview-section-label">11. Davranışın nedeni ve açıklaması:</div>
+    <div class="preview-text" style="padding:.5rem 0">
+      <div style="margin-bottom:.4rem">
+        <div style="font-weight:700;font-size:12px;margin-bottom:.2rem">a) Yaptırım uygulanacak öğrencinin ifadesinin özeti:</div>
+        <div style="padding-left:.75rem;white-space:pre-line;line-height:1.7">${formatOlayNeden(olayNeden || '………………………………………………………')}</div>
+      </div>
+    </div>
+
+    <div class="preview-section-label">12. Hafifletici nedenler:</div>
+    <div class="preview-text">${hafifletici}</div>
+
+    <div class="preview-section-label">13. Ağırlaştırıcı nedenler:</div>
+    <div class="preview-text">${agirlatici}</div>
+
+    <div class="preview-section-label">14. Kurul kanaati:</div>
+    <div class="preview-text">${kurulKanaat}</div>
+
+    <div class="preview-section-label">15. Verilen yaptırım ve dayandığı madde:</div>
+    <div class="preview-text"><strong>${ceza}</strong> &nbsp;—&nbsp; ${madde}</div>
+
+    <div class="preview-karar-box">
+      KARAR: Yukarıda kimlik bilgileri kayıtlı öğrenci <strong>${ogrAdi}</strong> hakkında, ${madde} kapsamında
+      <strong>${ceza}</strong> yaptırımının uygulanmasına kurulumuzca <strong>${kararTuru}</strong> ile karar verilmiştir. &nbsp;${kararTarihi}
+    </div>
+
+    <div class="signature-grid">
+      <div class="sig-box"><div class="sig-role">Başkan</div><strong>${baskan}</strong><br><small>İmza</small></div>
+      <div class="sig-box"><div class="sig-role">Üye</div><strong>${uye1}</strong><br><small>İmza</small></div>
+      <div class="sig-box"><div class="sig-role">Üye</div><strong>${uye2}</strong><br><small>İmza</small></div>
+      <div class="sig-box"><div class="sig-role">Üye</div><strong>${uye3}</strong><br><small>İmza</small></div>
+      <div class="sig-box"><div class="sig-role">Okul Aile Bir. Temsilcisi</div><strong>${oab}</strong><br><small>İmza</small></div>
+    </div>
+
+    <div class="mudur-row">
+      UYGUNDUR.<br>
+      <strong>Okul Müdürü</strong><br>
+      ${mudur}
+    </div>
+
+    <div class="preview-footer">
+      • Bu karar İlköğretim Kurumları Yönetmeliği (İOKY) hükümleri çerçevesinde düzenlenmiştir.<br>
+      • Karara itiraz hakkı, tebliğ tarihinden itibaren 5 (beş) iş günü içinde Pursaklar İlçe Millî Eğitim Müdürlüğü'ne yapılır.<br>
+      <span style="color:#888">Belge Kodu: EK-10 &nbsp;|&nbsp; Pursaklar İmam Hatip Ortaokulu &nbsp;|&nbsp; Ankara &nbsp;|&nbsp; Karar No: ${kararNo}</span>
+    </div>
+  `;
+
+  document.getElementById('preview-section').style.display = 'block';
+  document.getElementById('preview-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+
+
+
+
+/* ── Yazı Boyutu ───────────────────────────────── */
+let yaziBoyutuAdim = 0; // -5 ile +10 arası
+const ADIM_PX = 1; // her tıkta 1px
+const BASLANGIC_PX = 12.5; // preview-card varsayılan font-size (px)
+
+function yaziBoyutu(yon) {
+  if (yon === 0) {
+    yaziBoyutuAdim = 0;
+  } else {
+    yaziBoyutuAdim = Math.max(-5, Math.min(10, yaziBoyutuAdim + yon));
+  }
+  const yeniPx = BASLANGIC_PX + yaziBoyutuAdim * ADIM_PX;
+  const oran = Math.round((yeniPx / BASLANGIC_PX) * 100);
+
+  const kart = document.getElementById('previewContent');
+  if (kart) kart.style.fontSize = yeniPx + 'px';
+
+  document.getElementById('yaziBoyutuGoster').textContent = oran + '%';
+}
+
+/* ── Yazdır ────────────────────────────────────── */
+function yazdir() {
+  const preview = document.getElementById('preview-section');
+  if (preview.style.display === 'none' || !preview.querySelector('#previewContent').innerHTML.trim()) {
+    generatePreview();
+    setTimeout(() => window.print(), 600);
+  } else {
+    window.print();
+  }
+}
+
+/* ── Formu Sıfırla ─────────────────────────────── */
+function resetForm() {
+  clearForm();
+  document.getElementById('mudur').value = 'Mücahit ÇITIR';
+  statusEl.className = 'upload-status';
+  statusEl.textContent = '';
+  docxInput.value = ''; // dosya seçiciyi de sıfırla
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
